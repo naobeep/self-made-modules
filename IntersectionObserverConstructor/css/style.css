@@ -1,0 +1,15 @@
+.box {
+  background-color: #eee;
+  opacity: 0;
+  /* transform: translate(0px, 50px); */
+  transform: scale(.7);
+  margin: 20px;
+  padding: 10px;
+}
+
+.active {
+  transition: .3s ease-in;
+  opacity: 1;
+  /* transform: translate(0, 0); */
+  transform: scale(1);
+}
