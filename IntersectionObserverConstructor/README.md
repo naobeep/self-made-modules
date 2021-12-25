@@ -57,8 +57,12 @@ new IOConstructor({ target: 'selector'[, callback: callbackFunc, options: {}] })
 
 ## CHANGELOG
 
-2021.12.25
+- 2021.12.26
 
-- デフォルトのコールバックで付与するクラス名を`.targetIsIntersecting`に変更
-- `options`に`className`のプロパティを追加
-- `IOConstructor`を単体で使用する Integral バージョンと、TypeScript で記述された Bundle バージョンを追加
+  - README 修正
+
+- 2021.12.25
+
+  - デフォルトのコールバックで付与するクラス名を`.targetIsIntersecting`に変更
+  - `options`に`className`のプロパティを追加
+  - `IOConstructor`を単体で使用する Integral バージョンと、TypeScript で記述された Bundle バージョンを追加
