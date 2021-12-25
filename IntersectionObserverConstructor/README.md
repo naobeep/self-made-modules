@@ -22,7 +22,7 @@ Intersection Observer API を手軽に使うためのコンストラクタです
 ### 書式
 
 ```js
-new IOConstructor({ target: 'selector', callback: callbackFunc, options: {} });
+new IOConstructor({ target: 'selector'[, callback: callbackFunc, options: {}] });
 ```
 
 - target（必須）: セレクタを文字列で指定します。
