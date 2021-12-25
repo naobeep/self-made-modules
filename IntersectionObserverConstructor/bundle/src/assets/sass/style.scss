@@ -1,10 +1,11 @@
 .box {
   background-color: #eee;
   opacity: 0;
-  transform: scale(.7);
+  transform: scale(1.2);
   margin: 20px;
   padding: 10px;
 }
+
 
 .targetIsIntersecting {
   transition: .3s ease-in;
