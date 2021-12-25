@@ -26,7 +26,7 @@ new IOConstructor({ target: 'selector'[, callback: callbackFunc, options: {}] })
 ```
 
 - target（必須）: セレクタを文字列で指定します。
-- callback（任意）: コールバック関数を指定します。
+- callback（任意）: コールバック関数を指定します。デフォルトでは`target`に指定した要素が領域に交差した際に`.targetIsIntersecting`というクラスを付与する関数が設定されています。
 
   ```js
   {callback: function(){
@@ -61,4 +61,4 @@ new IOConstructor({ target: 'selector'[, callback: callbackFunc, options: {}] })
 
 - デフォルトのコールバックで付与するクラス名を`.targetIsIntersecting`に変更
 - `options`に`className`のプロパティを追加
-- `IOConstructor`を単体で使用するIntegralバージョンと、TypeScriptで記述されたBundleバージョンを追加
+- `IOConstructor`を単体で使用する Integral バージョンと、TypeScript で記述された Bundle バージョンを追加
