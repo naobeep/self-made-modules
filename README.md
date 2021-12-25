@@ -3,3 +3,7 @@
 ## IntersectionObserverConstructor
 
 Intersection Observer APIを手軽に使うためのコンストラクタモジュール
+
+## smoothScroll
+
+smooth scrollのモジュール
