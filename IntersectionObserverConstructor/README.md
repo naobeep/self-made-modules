@@ -60,6 +60,7 @@ new IOConstructor({ target: 'selector'[, callback: callbackFunc, options: {}] })
 - 2021.12.26
 
   - README 修正
+  - _init()メソッド修正
 
 - 2021.12.25
 
