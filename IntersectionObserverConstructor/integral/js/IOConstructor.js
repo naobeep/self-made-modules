@@ -72,14 +72,12 @@ var IOConstructor = /*#__PURE__*/ (function () {
     {
       key: '_init',
       value: function _init() {
-        var _this2 = this;
-
+        var observer = new IntersectionObserver(
+          this.cb.bind(this),
+          this.options
+        );
         this.targets.forEach(function (target) {
-          var observer = new IntersectionObserver(
-            _this2.cb.bind(_this2),
-            _this2.options
-          );
-          observer.observe(target);
+          return observer.observe(target);
         });
       },
     },

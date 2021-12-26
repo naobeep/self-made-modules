@@ -33,12 +33,12 @@ export class IOConstructor {
       observer: IntersectionObserver
     ) => {
       entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(this.options.className!);
-            this.options.once && observer.unobserve(entry.target);
-          } else {
-            entry.target.classList.remove(this.options.className!);
-          }
+        if (entry.isIntersecting) {
+          entry.target.classList.add(this.options.className!);
+          this.options.once && observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove(this.options.className!);
+        }
       });
     };
     this.cb = callback || defaultCallback;
@@ -46,9 +46,7 @@ export class IOConstructor {
   }
 
   _init() {
-    this.targets.forEach(target => {
-      const observer = new IntersectionObserver(this.cb, this.options);
-      observer.observe(target as Element);
-    });
+    const observer = new IntersectionObserver(this.cb, this.options);
+    this.targets.forEach(target => observer.observe(target as Element));
   }
 }

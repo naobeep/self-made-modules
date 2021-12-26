@@ -33,12 +33,7 @@ class IOConstructor {
   }
 
   _init() {
-    this.targets.forEach(target => {
-      const observer = new IntersectionObserver(
-        this.cb.bind(this),
-        this.options
-      );
-      observer.observe(target);
-    });
+    const observer = new IntersectionObserver(this.cb.bind(this), this.options);
+    this.targets.forEach(target => observer.observe(target));
   }
 }
