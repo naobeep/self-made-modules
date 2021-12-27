@@ -6,7 +6,7 @@
  * @param {Function} callback
  * @param {object} options
  */
-class IOConstructor {
+export class IOConstructor {
   constructor({ target, callback, options }) {
     this.targets = document.querySelectorAll(target);
     this.methodsList = ['remove', 'add'];

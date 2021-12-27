@@ -1,3 +1,4 @@
+import { IOConstructor } from "./IOConstructor.js";
 const options = { once: false };
 const cb = function (entries, observer) {
   entries.forEach(entry => {
