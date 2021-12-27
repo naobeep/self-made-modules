@@ -19,8 +19,7 @@ export const smoothScroll = () => {
   anchorLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      const target =
-        a.hash === '' ? document.body : document.querySelector(a.hash);
+      const target = document.querySelector(a.hash || 'body');
       scroll({
         top: target.offsetTop,
         behavior: 'smooth',

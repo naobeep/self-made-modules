@@ -1,11 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.smoothScroll = void 0;
-
-var smoothScroll = function smoothScroll() {
+(function () {
   // 他のページからID指定で飛んできたときに一度トップで止めてからスクロールする
   location.hash &&
     setTimeout(function () {
@@ -32,14 +27,11 @@ var smoothScroll = function smoothScroll() {
   anchorLinks.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      var target =
-        a.hash === '' ? document.body : document.querySelector(a.hash);
+      var target = document.querySelector(a.hash || 'body');
       scroll({
         top: target.offsetTop,
         behavior: 'smooth',
       });
     });
   });
-};
-
-exports.smoothScroll = smoothScroll;
+})();
