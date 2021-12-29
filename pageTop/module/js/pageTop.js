@@ -5,6 +5,7 @@ export class PageTop {
   constructor({
     baseColor,
     borderColor,
+    borderThickness,
     borderRadius,
     fontWeight,
     marginRight,
@@ -15,6 +16,7 @@ export class PageTop {
   }) {
     this.baseColor = baseColor || '#040';
     this.borderColor = borderColor || '#000';
+    this.borderThickness = borderThickness ?? 1;
     this.fontWeight = fontWeight || '500';
     this.marginBottom = marginBottom ?? 20;
     this.marginRight = marginRight ?? 10;
@@ -51,8 +53,8 @@ export class PageTop {
           transition: this.transition,
           opacity: '0',
           'background-color': this.baseColor,
-          '-webkit-box-shadow': `1px 1px ${this.borderColor}, 1px -1px ${this.borderColor}, -1px 1px ${this.borderColor}, -1px -1px ${this.borderColor}`,
-          'box-shadow': `1px 1px ${this.borderColor}, 1px -1px ${this.borderColor}, -1px 1px ${this.borderColor}, -1px -1px ${this.borderColor}`,
+          '-webkit-box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
+          'box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
         },
       },
       {
