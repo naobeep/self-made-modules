@@ -6,17 +6,3 @@
 .box:nth-child(odd) {
   background-color: #ccc;
 }
-
-/* html {
-  scroll-behavior: smooth;
-} */
-
-.appear {
-  -webkit-transform: translateX(-60px);
-  transform: translateX(-60px);
-  opacity: 1 !important;
-}
-
-.page_top:hover {
-  opacity: .7;
-}

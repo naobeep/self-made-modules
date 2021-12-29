@@ -8,7 +8,6 @@ export const elementGenerator = elementSource => {
     }
     element.textContent = obj.textContent ?? null;
     for (const key in obj.style) {
-      console.log(key, obj.style[key]);
       element.style[key] = obj.style[key];
     }
 
