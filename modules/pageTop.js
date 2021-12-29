@@ -1,5 +1,5 @@
-import { IOConstructor } from '../../../modules/IOConstructor.js';
-import { elementGenerator } from '../../../modules/elementGenerator.js';
+import { IOConstructor } from './IOConstructor.js';
+import { elementGenerator } from './elementGenerator.js';
 
 export class PageTop {
   constructor({
