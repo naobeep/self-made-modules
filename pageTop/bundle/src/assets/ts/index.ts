@@ -1,4 +1,9 @@
-import { PageTop } from './pageTop.js';
+require('intersection-observer');
+require('smoothscroll-polyfill');
+
+import { PageTop } from './pageTop';
+import { smoothScroll } from './smoothScroll_module';
+
 const settings = {
   // baseColor: '#040', //  string
   // borderColor: '#000', //  string
@@ -13,5 +18,4 @@ const settings = {
 };
 new PageTop(settings);
 
-import { smoothScroll } from '../../../modules/smoothScroll_module.js';
 smoothScroll();

@@ -1,6 +1,38 @@
-import { elementGenerator } from './elementGenerator.js';
+import { elementGenerator } from './elementGenerator';
+
+interface PageTopInterface {
+  baseColor?: string;
+  borderColor?: string;
+  borderThickness?: number;
+  borderRadius?: number;
+  fontWeight?: string;
+  marginRight?: number;
+  marginBottom?: number;
+  size?: number;
+  textColor?: string;
+  transition?: string;
+}
 
 export class PageTop {
+  baseColor: string;
+  borderColor: string;
+  borderThickness: number;
+  borderRadius: number;
+  fontWeight: string;
+  marginRight: number;
+  marginBottom: number;
+  size: number;
+  textColor: string;
+  transition: string;
+  fontSize: number;
+  triangleBaseSize: number;
+  elementSource: {
+    tagName: string;
+    attr: { [key: string]: string };
+    style?: { [key: string]: string };
+    parents?: string;
+    textContent?: string;
+  }[];
   constructor({
     baseColor,
     borderColor,
@@ -12,7 +44,7 @@ export class PageTop {
     size,
     textColor,
     transition,
-  }) {
+  }: PageTopInterface) {
     this.baseColor = baseColor || '#040';
     this.borderColor = borderColor || '#000';
     this.borderThickness = borderThickness ?? 1;
@@ -39,8 +71,8 @@ export class PageTop {
           bottom: this.marginBottom + 'px',
           right: -(this.size + 1) + 'px',
           'border-radius': this.borderRadius + 'px',
-          display: '-webkit-box',
-          display: '-ms-flexbox',
+          // display: '-webkit-box',
+          // display: '-ms-flexbox',
           display: 'flex',
           '-webkit-box-pack': 'center',
           '-ms-flex-pack': 'center',
@@ -66,8 +98,8 @@ export class PageTop {
         style: {
           color: this.textColor,
           'text-decoration': 'none',
-          display: '-webkit-box',
-          display: '-ms-flexbox',
+          // display: '-webkit-box',
+          // display: '-ms-flexbox',
           display: 'flex',
           '-webkit-box-pack': 'center',
           '-ms-flex-pack': 'center',
@@ -102,7 +134,7 @@ export class PageTop {
         parents: '.inner',
         style: {
           width: '0',
-          height: 0,
+          height: `0`,
           'border-style': 'solid',
           'border-width': `0 ${this.triangleBaseSize * 2}px ${
             this.triangleBaseSize * 3
@@ -125,36 +157,34 @@ export class PageTop {
     this._init();
   }
   _init() {
-    // ボタンの生成
     elementGenerator(this.elementSource);
-
-    // ボタンの出し入れ
     const topBtn = document.getElementById('pageTop');
+    const size = this.size;
+    const marginRight = this.marginRight;
+
     const observer = new IntersectionObserver(
       function (entry) {
         const isIntersecting = entry[0].isIntersecting;
-        topBtn.style.transform = `translateX(${
-          -(this.size + this.marginRight) * +isIntersecting
+        topBtn!.style.transform = `translateX(${
+          -(size + marginRight) * +isIntersecting
         }px)`;
-        topBtn.style.opacity = `${+isIntersecting}`;
-      }.bind(this),
+        topBtn!.style.opacity = `${+isIntersecting}`;
+      },
       { rootMargin: '0px 0px -100%' }
     );
     observer.observe(document.body);
-
-    // ボタンホバー時のエフェクト
-    topBtn.addEventListener(
+    topBtn!.addEventListener(
       'mouseenter',
       function () {
-        this.style.opacity = 0.7;
+        this.style.opacity = `0.7`;
       },
       true
     );
 
-    topBtn.addEventListener(
+    topBtn!.addEventListener(
       'mouseleave',
       function () {
-        this.style.opacity = 1;
+        this.style.opacity = '1';
       },
       true
     );

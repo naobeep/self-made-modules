@@ -1,0 +1,13 @@
+.box {
+  height: 700px;
+  background-color: #eee;
+
+  &:nth-child(odd) {
+    background-color: #ccc;
+  }
+
+}
+
+/* html {
+  scroll-behavior: smooth;
+} */

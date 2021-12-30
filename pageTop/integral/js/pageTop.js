@@ -148,6 +148,8 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 var PageTop = /*#__PURE__*/ (function () {
+  'use strict';
+
   function PageTop(_ref) {
     var _style, _style2;
 
@@ -174,7 +176,7 @@ var PageTop = /*#__PURE__*/ (function () {
     this.marginBottom =
       marginBottom !== null && marginBottom !== void 0 ? marginBottom : 20;
     this.marginRight =
-      marginRight !== null && marginRight !== void 0 ? marginRight : 10;
+      marginRight !== null && marginRight !== void 0 ? marginRight : 20;
     this.size = size !== null && size !== void 0 ? size : 50;
     this.textColor = textColor || '#fff';
     this.transition = transition || '.3s linear';
@@ -329,24 +331,25 @@ var PageTop = /*#__PURE__*/ (function () {
     {
       key: '_init',
       value: function _init() {
-        elementGenerator(this.elementSource);
+        // ボタンの生成
+        elementGenerator(this.elementSource); // ボタンの出し入れ
+
         var topBtn = document.getElementById('pageTop');
-        var size = this.size;
-        var marginRight = this.marginRight;
-        new IOConstructor({
-          target: 'body',
-          callback: function callback(entry) {
+        var observer = new IntersectionObserver(
+          function (entry) {
             var isIntersecting = entry[0].isIntersecting;
             topBtn.style.transform = 'translateX('.concat(
-              -(size + marginRight) * +isIntersecting,
+              -(this.size + this.marginRight) * +isIntersecting,
               'px)'
             );
-            topBtn.style.opacity = +isIntersecting;
-          },
-          options: {
+            topBtn.style.opacity = ''.concat(+isIntersecting);
+          }.bind(this),
+          {
             rootMargin: '0px 0px -100%',
-          },
-        });
+          }
+        );
+        observer.observe(document.body); // ボタンホバー時のエフェクト
+
         topBtn.addEventListener(
           'mouseenter',
           function () {
