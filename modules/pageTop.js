@@ -1,10 +1,10 @@
-import { IOConstructor } from './IOConstructor.js';
 import { elementGenerator } from './elementGenerator.js';
 
 export class PageTop {
   constructor({
     baseColor,
     borderColor,
+    borderThickness,
     borderRadius,
     fontWeight,
     marginRight,
@@ -15,9 +15,10 @@ export class PageTop {
   }) {
     this.baseColor = baseColor || '#040';
     this.borderColor = borderColor || '#000';
+    this.borderThickness = borderThickness ?? 1;
     this.fontWeight = fontWeight || '500';
     this.marginBottom = marginBottom ?? 20;
-    this.marginRight = marginRight ?? 10;
+    this.marginRight = marginRight ?? 20;
     this.size = size ?? 50;
     this.textColor = textColor || '#fff';
     this.transition = transition || '.3s linear';
@@ -51,8 +52,8 @@ export class PageTop {
           transition: this.transition,
           opacity: '0',
           'background-color': this.baseColor,
-          '-webkit-box-shadow': `1px 1px ${this.borderColor}, 1px -1px ${this.borderColor}, -1px 1px ${this.borderColor}, -1px -1px ${this.borderColor}`,
-          'box-shadow': `1px 1px ${this.borderColor}, 1px -1px ${this.borderColor}, -1px 1px ${this.borderColor}, -1px -1px ${this.borderColor}`,
+          '-webkit-box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
+          'box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
         },
       },
       {
@@ -124,21 +125,24 @@ export class PageTop {
     this._init();
   }
   _init() {
+    // ボタンの生成
     elementGenerator(this.elementSource);
+
+    // ボタンの出し入れ
     const topBtn = document.getElementById('pageTop');
-    const size = this.size;
-    const marginRight = this.marginRight;
-    new IOConstructor({
-      target: 'body',
-      callback: function (entry) {
+    const observer = new IntersectionObserver(
+      function (entry) {
         const isIntersecting = entry[0].isIntersecting;
         topBtn.style.transform = `translateX(${
-          -(size + marginRight) * +isIntersecting
+          -(this.size + this.marginRight) * +isIntersecting
         }px)`;
-        topBtn.style.opacity = +isIntersecting;
-      },
-      options: { rootMargin: '0px 0px -100%' },
-    });
+        topBtn.style.opacity = `${+isIntersecting}`;
+      }.bind(this),
+      { rootMargin: '0px 0px -100%' }
+    );
+    observer.observe(document.body);
+
+    // ボタンホバー時のエフェクト
     topBtn.addEventListener(
       'mouseenter',
       function () {

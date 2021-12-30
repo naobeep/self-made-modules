@@ -1,5 +1,115 @@
 'use strict';
 
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it =
+    (typeof Symbol !== 'undefined' && o[Symbol.iterator]) || o['@@iterator'];
+  if (!it) {
+    if (
+      Array.isArray(o) ||
+      (it = _unsupportedIterableToArray(o)) ||
+      (allowArrayLike && o && typeof o.length === 'number')
+    ) {
+      if (it) o = it;
+      var i = 0;
+      var F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          if (i >= o.length) return { done: true };
+          return { done: false, value: o[i++] };
+        },
+        e: function e(_e) {
+          throw _e;
+        },
+        f: F,
+      };
+    }
+    throw new TypeError(
+      'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+    );
+  }
+  var normalCompletion = true,
+    didErr = false,
+    err;
+  return {
+    s: function s() {
+      it = it.call(o);
+    },
+    n: function n() {
+      var step = it.next();
+      normalCompletion = step.done;
+      return step;
+    },
+    e: function e(_e2) {
+      didErr = true;
+      err = _e2;
+    },
+    f: function f() {
+      try {
+        if (!normalCompletion && it.return != null) it.return();
+      } finally {
+        if (didErr) throw err;
+      }
+    },
+  };
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === 'Object' && o.constructor) n = o.constructor.name;
+  if (n === 'Map' || n === 'Set') return Array.from(o);
+  if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+
+var body = document.querySelector('body');
+
+var elementGenerator = function elementGenerator(elementSource) {
+  var _iterator = _createForOfIteratorHelper(elementSource),
+    _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var _obj$textContent;
+
+      var obj = _step.value;
+      var element = document.createElement(obj.tagName);
+
+      for (var key in obj.attr) {
+        element.setAttribute(key, obj.attr[key]);
+      }
+
+      element.textContent =
+        (_obj$textContent = obj.textContent) !== null &&
+        _obj$textContent !== void 0
+          ? _obj$textContent
+          : null;
+
+      for (var _key in obj.style) {
+        element.style[_key] = obj.style[_key];
+      }
+
+      obj.parents
+        ? document.querySelector(obj.parents).append(element)
+        : body.append(element);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+};
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -38,6 +148,8 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 var PageTop = /*#__PURE__*/ (function () {
+  'use strict';
+
   function PageTop(_ref) {
     var _style, _style2;
 
@@ -64,7 +176,7 @@ var PageTop = /*#__PURE__*/ (function () {
     this.marginBottom =
       marginBottom !== null && marginBottom !== void 0 ? marginBottom : 20;
     this.marginRight =
-      marginRight !== null && marginRight !== void 0 ? marginRight : 10;
+      marginRight !== null && marginRight !== void 0 ? marginRight : 20;
     this.size = size !== null && size !== void 0 ? size : 50;
     this.textColor = textColor || '#fff';
     this.transition = transition || '.3s linear';
@@ -219,24 +331,27 @@ var PageTop = /*#__PURE__*/ (function () {
     {
       key: '_init',
       value: function _init() {
+        // ボタンの生成
         elementGenerator(this.elementSource);
+
+        // ボタンの出し入れ
         var topBtn = document.getElementById('pageTop');
-        var size = this.size;
-        var marginRight = this.marginRight;
-        new IOConstructor({
-          target: 'body',
-          callback: function callback(entry) {
+        var observer = new IntersectionObserver(
+          function (entry) {
             var isIntersecting = entry[0].isIntersecting;
             topBtn.style.transform = 'translateX('.concat(
-              -(size + marginRight) * +isIntersecting,
+              -(this.size + this.marginRight) * +isIntersecting,
               'px)'
             );
-            topBtn.style.opacity = +isIntersecting;
-          },
-          options: {
+            topBtn.style.opacity = ''.concat(+isIntersecting);
+          }.bind(this),
+          {
             rootMargin: '0px 0px -100%',
-          },
-        });
+          }
+        );
+        observer.observe(document.body);
+
+        // ボタンホバー時のエフェクト
         topBtn.addEventListener(
           'mouseenter',
           function () {
