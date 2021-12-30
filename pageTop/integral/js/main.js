@@ -1,13 +1,13 @@
 const settings = {
   // baseColor: '#040', //  string
   // borderColor: '#000', //  string
-  // borderRadius: 0, //  number
-  // borderThickness: 0,  //  number
+  // borderRadius: 10, //  number
+  // borderThickness: 1,  //  number
   // fontWeight: '500', //  string
   // marginRight: 20, //  number
   // marginBottom: 20,  //  number
   // size: 50,  //  number
-  // textColor: '#000', //  string
+  // textColor: '#FFF', //  string
   // transition: '.3s linear',  //  string
 };
 new PageTop(settings);
