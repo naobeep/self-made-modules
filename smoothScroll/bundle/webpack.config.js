@@ -27,11 +27,11 @@ const froms = {
   polyfill: path.join(
     opts.srcDir,
     'assets',
-    'ts',
+    'js',
     'polyfill'
   ),
   // moduleA: path.join(opts.srcDir, 'assets', 'ts', 'moduleA.ts'),
-  ts: path.join(opts.srcDir, 'assets', 'ts', 'index.ts'),
+  ts: path.join(opts.srcDir, 'assets', 'js', 'index.js'),
   scss: {
     A: path.join(opts.srcDir, 'assets', 'sass', 'style.scss'),
     // B: path.join(opts.srcDir, 'assets', 'sass', 'hoge.scss'),
@@ -64,7 +64,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)$/i,
+        test: /\.js$/i,
         exclude: /node_modules/,
         use: [
           {
@@ -83,9 +83,9 @@ module.exports = {
               ],
             },
           },
-          {
-            loader: 'ts-loader',
-          },
+          // {
+          //   loader: 'ts-loader',
+          // },
         ],
       },
       {

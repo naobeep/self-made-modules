@@ -48,7 +48,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    // polyfills: froms.polyfill,
+    polyfills: froms.polyfill,
     // moduleA: froms.moduleA,
     main: froms.ts,
     'style.min.css': froms.scss.A,
