@@ -1,6 +1,4 @@
 require('intersection-observer');
-require('smoothscroll-polyfill');
-
 import { PageTop } from './pageTop';
 import { smoothScroll } from './smoothScroll_module';
 

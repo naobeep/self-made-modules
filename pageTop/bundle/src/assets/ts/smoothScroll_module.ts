@@ -1,4 +1,9 @@
+import smoothscrollPolyfill from 'smoothscroll-polyfill';
+
 export const smoothScroll = () => {
+  // kick off the polyfill!
+  smoothscrollPolyfill.polyfill();
+
   // 他のページからID指定で飛んできたときに一度トップで止めてからスクロールする
   location.hash &&
     setTimeout(() => {
@@ -15,7 +20,8 @@ export const smoothScroll = () => {
     }, 70); //  ページ外から飛んできたときにスムーススクロールが働かないときはここの数値を調整（ミリ秒）
 
   // ページ内リンクを踏んだときの制御
-  const anchorLinks:NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href^="#"]');
+  const anchorLinks: NodeListOf<HTMLAnchorElement> =
+    document.querySelectorAll('a[href^="#"]');
 
   anchorLinks.forEach(a => {
     a.addEventListener('click', e => {

@@ -11,8 +11,7 @@ export const elementGenerator = (elementSource: any) => {
       element.style[key] = obj.style[key];
     }
 
-    obj.parents
-      ? document.querySelector(obj.parents).appendChild(element)
-      : body!.appendChild(element);
+    document.querySelector(obj.parents)?.appendChild(element) ??
+      body!.appendChild(element);
   }
 };
