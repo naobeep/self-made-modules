@@ -9,7 +9,7 @@
   - 使用には`elementGenerator.js`が必要になります。
   1. `elementGenerator.js`を`pageTop.js`と同じ階層に格納する
   2. `main.js`に`pageTop.js`を import し、`PageTop`をインスタンスする。
-  3. html で`main.js`を`type="module"で読み込む。
+  3. html で`main.js`を`type="module"`で読み込む。
 
     ```html
     <script src="~/main.js" type="module"></script>
