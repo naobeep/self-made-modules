@@ -6,21 +6,29 @@
 
 - module
   - モジュールとして import してつかいます。Internet Explorer では使用できません。
-  - 使用には`elementGenerator.js`,`IOConstructor.js`が必要になります。
-  1. `elementGenerator.js`,`IOConstructor.js`を`pageTop.js`と同じ階層に格納する
-  2. `main.js`に`pageTop.js`を import し、`PageTop`をインスタンスする
+  - 使用には`elementGenerator.js`が必要になります。
+  1. `elementGenerator.js`を`pageTop.js`と同じ階層に格納する
+  2. `main.js`に`pageTop.js`を import し、`PageTop`をインスタンスする。
+  3. html で`main.js`を`type="module"で読み込む。
+
+    ```html
+    <script src="~/main.js" type="module"></script>
+    ```
+
 - integral
   - `pageTop.js`を直接読み込んで使用します。
-  - 依存ファイルである`elementGenerator.js`,`IOConstructor.js`も読み込む必要があります。
   - Internet Explorer で使用する場合は`polyfills.js`も読み込む必要があります。
   - スムーススクロールを実装する場合は`smoothScroll.js`も読み込む必要があります。
   1. (`polyfills.js`を読み込む)
-  2. `IOConstructor.js`を読み込む
-  3. `elementGenerator.js`を読み込む
-  4. `pageTop.js`を読み込む
-  5. (`smoothScroll`を読み込む)
-  6. `main.js`等で`PageTop`をインスタンスする。
-  7. (`smoothScroll()`を呼び出す。)
+  2. (`smoothScroll`を読み込む)
+  3. `pageTop.js`を読み込む
+  4. `main.js`等で`PageTop`をインスタンスする。
+  5. (`smoothScroll()`を呼び出す。)
+- bundle
+  - すべてを一つのファイルにバンドルします。。es5 でコンパイルするので Internet Explorer でも利用可能です。
+  1. `package.json`に従って`node_modules`をインストールする
+  2. NPM スクリプトのコマンドを使って build する
+  3. `dist`フォルダにアウトプットされた`main.js`を html で読み込む
 
 ### 書式
 
@@ -28,7 +36,7 @@
 const settings = {
   // プロパティはすべて省略可。省略した場合は下記の値がデフォルト値として設定されます。
   baseColor: '#040', //  (string) ボタンの色
-  borderColor: '#000', //  (string) ボタンの縁取りの色
+  borderColor: '#FFF', //  (string) ボタンの縁取りの色
   borderRadius: 10, //  (number) ボタンの角丸の設定
   borderThickness: 1, //  (number) ボタンの縁取りの幅
   fontWeight: '500', //  (string) `TOP`の文字のfont-weight

@@ -8,6 +8,6 @@ Intersection Observer APIを手軽に使うためのコンストラクタモジ�
 
 smooth scrollのモジュール
 
-## pageTop
+## PageTop
 
-トップに戻るボタンを作成・制御するclassモジュール
+トップに戻るボタンを作成・制御するコンストラクタモジュール
