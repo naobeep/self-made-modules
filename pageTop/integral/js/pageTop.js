@@ -151,7 +151,7 @@ var PageTop = /*#__PURE__*/ (function () {
   'use strict';
 
   function PageTop(_ref) {
-    var _style, _style2;
+    var _style, _style2, _style3;
 
     var baseColor = _ref.baseColor,
       borderColor = _ref.borderColor,
@@ -286,10 +286,18 @@ var PageTop = /*#__PURE__*/ (function () {
           class: 'inner',
         },
         parents: '.pageTop_anchor',
-        style: {
-          'text-align': 'center',
-          'padding-top': ''.concat(this.triangleBaseSize * 0.8, 'px'),
-        },
+        style:
+          ((_style3 = {
+            'text-align': 'center',
+            'padding-top': '0px',
+          }),
+          _defineProperty(
+            _style3,
+            'padding-top',
+            ''.concat(this.triangleBaseSize * 0.4, 'px')
+          ),
+          _defineProperty(_style3, 'height', '76.5%'),
+          _style3),
       },
       {
         tagName: 'div',
@@ -318,8 +326,10 @@ var PageTop = /*#__PURE__*/ (function () {
         textContent: 'TOP',
         parents: '.inner',
         style: {
-          'margin-top': this.fontSize * 0.4 + 'px',
           'font-weight': this.fontWeight,
+          'line-height': 1.15,
+          margin: 0,
+          padding: ''.concat(this.fontSize * 0.4, 'px 0 0'),
         },
       },
     ];

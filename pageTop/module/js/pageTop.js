@@ -91,7 +91,9 @@ export class PageTop {
         parents: '.pageTop_anchor',
         style: {
           'text-align': 'center',
-          'padding-top': `${this.triangleBaseSize * 0.8}px`,
+          'padding-top': `0px`,
+          'padding-top': `${this.triangleBaseSize * 0.4}px`,
+          height: '76.5%',
         },
       },
       {
@@ -117,8 +119,10 @@ export class PageTop {
         textContent: 'TOP',
         parents: '.inner',
         style: {
-          'margin-top': this.fontSize * 0.4 + 'px',
           'font-weight': this.fontWeight,
+          'line-height': 1.15,
+          margin: 0,
+          padding: `${this.fontSize * 0.4}px 0 0`,
         },
       },
     ];
