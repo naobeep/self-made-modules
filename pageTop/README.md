@@ -24,6 +24,14 @@
   3. `pageTop.js`を読み込む
   4. `main.js`等で`PageTop`をインスタンスする。
   5. (`smoothScroll()`を呼び出す。)
+
+    ```html
+    <script src="~/polyfills.js"></script>
+    <script src="~/pageTop.js"></script>
+    <script src="~/smoothScroll_IE.js"></script>
+    <script src="~/main.js"></script>
+    ```
+
 - bundle
   - すべてを一つのファイルにバンドルします。。es5 でコンパイルするので Internet Explorer でも利用可能です。
   1. `package.json`に従って`node_modules`をインストールする

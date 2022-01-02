@@ -4,7 +4,7 @@ import { smoothScroll } from './smoothScroll_module';
 
 const settings = {
   // baseColor: '#040', //  string
-  // borderColor: '#000', //  string
+  // borderColor: '#FFF', //  string
   // borderRadius: 10, //  number
   // borderThickness: 1,  //  number
   // fontWeight: '500', //  string

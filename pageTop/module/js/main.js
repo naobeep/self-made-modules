@@ -1,7 +1,7 @@
 import { PageTop } from './pageTop.js';
 const settings = {
   // baseColor: '#040', //  string
-  // borderColor: '#000', //  string
+  // borderColor: '#FFF', //  string
   // borderRadius: 10, //  number
   // borderThickness: 1,  //  number
   // fontWeight: '500', //  string
@@ -13,5 +13,5 @@ const settings = {
 };
 new PageTop(settings);
 
-import { smoothScroll } from '../../../modules/smoothScroll_module.js';
+import { smoothScroll } from '../../../modules/js/smoothScroll_module.js';
 smoothScroll();
