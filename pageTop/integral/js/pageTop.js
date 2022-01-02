@@ -326,6 +326,7 @@ var PageTop = /*#__PURE__*/ (function () {
         textContent: 'TOP',
         parents: '.inner',
         style: {
+          'font-family': 'Meiryo',
           'font-weight': this.fontWeight,
           'line-height': 1.15,
           margin: 0,
