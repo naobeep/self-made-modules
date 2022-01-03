@@ -1,4 +1,39 @@
-'use strict';
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ('value' in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, 'prototype', { writable: false });
+  return Constructor;
+}
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
   var it =
@@ -110,48 +145,11 @@ var elementGenerator = function elementGenerator(elementSource) {
   }
 };
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true,
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ('value' in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, 'prototype', { writable: false });
-  return Constructor;
-}
-
 var PageTop = /*#__PURE__*/ (function () {
   'use strict';
 
   function PageTop(_ref) {
-    var _style, _style2, _style3;
+    var _style, _style2;
 
     var baseColor = _ref.baseColor,
       borderColor = _ref.borderColor,
@@ -249,13 +247,14 @@ var PageTop = /*#__PURE__*/ (function () {
               .concat(this.borderThickness, 'px ')
               .concat(this.borderColor)
           ),
+          _defineProperty(_style, 'line-height', 1.15),
           _style),
       },
       {
         tagName: 'a',
         attr: {
           href: '#',
-          class: 'pageTop_anchor',
+          id: 'pageTop_anchor',
         },
         parents: '#pageTop',
         style:
@@ -283,28 +282,24 @@ var PageTop = /*#__PURE__*/ (function () {
       {
         tagName: 'div',
         attr: {
-          class: 'inner',
+          id: 'pageTop_inner',
         },
-        parents: '.pageTop_anchor',
-        style:
-          ((_style3 = {
+        parents: '#pageTop_anchor',
+        style: _defineProperty(
+          {
             'text-align': 'center',
             'padding-top': '0px',
-          }),
-          _defineProperty(
-            _style3,
-            'padding-top',
-            ''.concat(this.triangleBaseSize * 0.4, 'px')
-          ),
-          _defineProperty(_style3, 'height', '76.5%'),
-          _style3),
+          },
+          'padding-top',
+          ''.concat(this.triangleBaseSize * 0.4, 'px')
+        ),
       },
       {
         tagName: 'div',
         attr: {
           class: 'triangle',
         },
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
           width: '0',
           height: 0,
@@ -324,11 +319,10 @@ var PageTop = /*#__PURE__*/ (function () {
         tagName: 'p',
         attr: {},
         textContent: 'TOP',
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
           'font-family': 'Meiryo',
           'font-weight': this.fontWeight,
-          'line-height': 1.15,
           margin: 0,
           padding: ''.concat(this.fontSize * 0.4, 'px 0 0'),
         },
