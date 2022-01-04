@@ -166,7 +166,7 @@ var PageTop = /*#__PURE__*/ (function () {
 
     _classCallCheck(this, PageTop);
 
-    this.baseColor = baseColor || '#040';
+    this.baseColor = baseColor || '#14641e';
     this.borderColor = borderColor || '#FFF';
     this.borderThickness =
       borderThickness !== null && borderThickness !== void 0

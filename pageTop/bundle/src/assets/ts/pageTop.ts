@@ -45,7 +45,7 @@ export class PageTop {
     textColor,
     transition,
   }: PageTopInterface) {
-    this.baseColor = baseColor || '#040';
+    this.baseColor = baseColor || '#14641e';
     this.borderColor = borderColor || '#FFF';
     this.borderThickness = borderThickness ?? 1;
     this.fontWeight = fontWeight || '500';

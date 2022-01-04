@@ -43,7 +43,7 @@
 ```js
 const settings = {
   // プロパティはすべて省略可。省略した場合は下記の値がデフォルト値として設定されます。
-  baseColor: '#040', //  (string) ボタンの色
+  baseColor: '#14641e', //  (string) ボタンの色
   borderColor: '#FFF', //  (string) ボタンの縁取りの色
   borderRadius: 10, //  (number) ボタンの角丸の設定
   borderThickness: 1, //  (number) ボタンの縁取りの幅
