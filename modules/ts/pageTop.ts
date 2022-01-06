@@ -86,13 +86,14 @@ export class PageTop {
           'background-color': this.baseColor,
           '-webkit-box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
           'box-shadow': `${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, ${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px ${this.borderThickness}px ${this.borderColor}, -${this.borderThickness}px -${this.borderThickness}px ${this.borderColor}`,
+          'line-height': '1.15',
         },
       },
       {
         tagName: 'a',
         attr: {
           href: '#',
-          class: 'pageTop_anchor',
+          id: 'pageTop_anchor',
         },
         parents: '#pageTop',
         style: {
@@ -118,12 +119,13 @@ export class PageTop {
       {
         tagName: 'div',
         attr: {
-          class: 'inner',
+          id: 'pageTop_inner',
         },
-        parents: '.pageTop_anchor',
+        parents: '#pageTop_anchor',
         style: {
           'text-align': 'center',
-          'padding-top': `${this.triangleBaseSize * 0.8}px`,
+          'padding-top': `${this.triangleBaseSize * 0.4}px`,
+          // height: '76.5%',
         },
       },
       {
@@ -131,7 +133,7 @@ export class PageTop {
         attr: {
           class: 'triangle',
         },
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
           width: '0',
           height: `0`,
@@ -147,10 +149,13 @@ export class PageTop {
         tagName: 'p',
         attr: {},
         textContent: 'TOP',
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
-          'margin-top': `${this.fontSize * 0.4}px`,
+          'font-family': 'Meiryo',
           'font-weight': this.fontWeight,
+          // 'line-height': '1.15',
+          margin: '0',
+          padding: `${this.fontSize * 0.4}px 0 0`,
         },
       },
     ];

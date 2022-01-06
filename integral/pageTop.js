@@ -1,4 +1,39 @@
-'use strict';
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ('value' in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, 'prototype', { writable: false });
+  return Constructor;
+}
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
   var it =
@@ -110,43 +145,6 @@ var elementGenerator = function elementGenerator(elementSource) {
   }
 };
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true,
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ('value' in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, 'prototype', { writable: false });
-  return Constructor;
-}
-
 var PageTop = /*#__PURE__*/ (function () {
   'use strict';
 
@@ -249,13 +247,14 @@ var PageTop = /*#__PURE__*/ (function () {
               .concat(this.borderThickness, 'px ')
               .concat(this.borderColor)
           ),
+          _defineProperty(_style, 'line-height', 1.15),
           _style),
       },
       {
         tagName: 'a',
         attr: {
           href: '#',
-          class: 'pageTop_anchor',
+          id: 'pageTop_anchor',
         },
         parents: '#pageTop',
         style:
@@ -283,20 +282,24 @@ var PageTop = /*#__PURE__*/ (function () {
       {
         tagName: 'div',
         attr: {
-          class: 'inner',
+          id: 'pageTop_inner',
         },
-        parents: '.pageTop_anchor',
-        style: {
-          'text-align': 'center',
-          'padding-top': ''.concat(this.triangleBaseSize * 0.8, 'px'),
-        },
+        parents: '#pageTop_anchor',
+        style: _defineProperty(
+          {
+            'text-align': 'center',
+            'padding-top': '0px',
+          },
+          'padding-top',
+          ''.concat(this.triangleBaseSize * 0.4, 'px')
+        ),
       },
       {
         tagName: 'div',
         attr: {
           class: 'triangle',
         },
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
           width: '0',
           height: 0,
@@ -316,10 +319,12 @@ var PageTop = /*#__PURE__*/ (function () {
         tagName: 'p',
         attr: {},
         textContent: 'TOP',
-        parents: '.inner',
+        parents: '#pageTop_inner',
         style: {
-          'margin-top': this.fontSize * 0.4 + 'px',
+          'font-family': 'Meiryo',
           'font-weight': this.fontWeight,
+          margin: 0,
+          padding: ''.concat(this.fontSize * 0.4, 'px 0 0'),
         },
       },
     ];
@@ -332,9 +337,8 @@ var PageTop = /*#__PURE__*/ (function () {
       key: '_init',
       value: function _init() {
         // ボタンの生成
-        elementGenerator(this.elementSource);
+        elementGenerator(this.elementSource); // ボタンの出し入れ
 
-        // ボタンの出し入れ
         var topBtn = document.getElementById('pageTop');
         var observer = new IntersectionObserver(
           function (entry) {
@@ -349,9 +353,8 @@ var PageTop = /*#__PURE__*/ (function () {
             rootMargin: '0px 0px -100%',
           }
         );
-        observer.observe(document.body);
+        observer.observe(document.body); // ボタンホバー時のエフェクト
 
-        // ボタンホバー時のエフェクト
         topBtn.addEventListener(
           'mouseenter',
           function () {
