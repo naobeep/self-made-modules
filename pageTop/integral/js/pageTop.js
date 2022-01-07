@@ -1,3 +1,39 @@
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly &&
+      (symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      })),
+      keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2
+      ? ownKeys(Object(source), !0).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        })
+      : Object.getOwnPropertyDescriptors
+      ? Object.defineProperties(
+          target,
+          Object.getOwnPropertyDescriptors(source)
+        )
+      : ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(
+            target,
+            key,
+            Object.getOwnPropertyDescriptor(source, key)
+          );
+        });
+  }
+  return target;
+}
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -107,6 +143,22 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 
+// usage
+//
+// import { PageTop } from './pageTop.js';
+// const settings = {
+//   baseColor: '#14641e', //  string
+//   borderColor: '#fff', //  string
+//   borderRadius: 10, //  number
+//   borderThickness: 1, //  number
+//   fontWeight: '500', //  string
+//   marginRight: 20, //  number
+//   marginBottom: 20, //  number
+//   size: 50, //  number
+//   textColor: '#fff', //  string
+//   transition: '.3s linear', //  string
+// };
+// new PageTop(settings);
 var body = document.querySelector('body');
 
 var elementGenerator = function elementGenerator(elementSource) {
@@ -143,47 +195,38 @@ var elementGenerator = function elementGenerator(elementSource) {
   } finally {
     _iterator.f();
   }
-};
+}; // PageTop
 
 var PageTop = /*#__PURE__*/ (function () {
   'use strict';
 
-  function PageTop(_ref) {
-    var _style, _style2;
-
-    var baseColor = _ref.baseColor,
-      borderColor = _ref.borderColor,
-      borderThickness = _ref.borderThickness,
-      borderRadius = _ref.borderRadius,
-      fontWeight = _ref.fontWeight,
-      marginRight = _ref.marginRight,
-      marginBottom = _ref.marginBottom,
-      size = _ref.size,
-      textColor = _ref.textColor,
-      transition = _ref.transition;
+  function PageTop(enteredSettings) {
+    var _enteredSettings$bord, _style, _style2;
 
     _classCallCheck(this, PageTop);
 
-    this.baseColor = baseColor || '#14641e';
-    this.borderColor = borderColor || '#FFF';
-    this.borderThickness =
-      borderThickness !== null && borderThickness !== void 0
-        ? borderThickness
-        : 1;
-    this.fontWeight = fontWeight || '500';
-    this.marginBottom =
-      marginBottom !== null && marginBottom !== void 0 ? marginBottom : 20;
-    this.marginRight =
-      marginRight !== null && marginRight !== void 0 ? marginRight : 20;
-    this.size = size !== null && size !== void 0 ? size : 50;
-    this.textColor = textColor || '#fff';
-    this.transition = transition || '.3s linear';
-    this.borderRadius =
-      borderRadius !== null && borderRadius !== void 0
-        ? borderRadius
-        : this.size / 5;
-    this.fontSize = (this.size / 50) * 15;
-    this.triangleBaseSize = (this.size / 50) * 5;
+    var defaultSettings = {
+      baseColor: '#14641e',
+      borderColor: '#fff',
+      borderThickness: 1,
+      fontWeight: '500',
+      marginBottom: 20,
+      marginRight: 20,
+      size: 50,
+      textColor: '#fff',
+      transition: '0.3s linear',
+    };
+    this.settings = _objectSpread(
+      _objectSpread({}, defaultSettings),
+      enteredSettings
+    );
+    this.settings.fontSize = (this.settings.size / 50) * 15;
+    this.settings.borderRadius =
+      (_enteredSettings$bord = enteredSettings.borderRadius) !== null &&
+      _enteredSettings$bord !== void 0
+        ? _enteredSettings$bord
+        : this.settings.size / 5;
+    this.settings.triangleBaseSize = (this.settings.size / 50) * 5;
     this.elementSource = [
       {
         tagName: 'div',
@@ -193,12 +236,12 @@ var PageTop = /*#__PURE__*/ (function () {
         },
         style:
           ((_style = {
-            width: this.size + 'px',
-            height: this.size + 'px',
+            width: this.settings.size + 'px',
+            height: this.settings.size + 'px',
             position: 'fixed',
-            bottom: this.marginBottom + 'px',
-            right: -(this.size + 1) + 'px',
-            'border-radius': this.borderRadius + 'px',
+            bottom: this.settings.marginBottom + 'px',
+            right: -(this.settings.size + 1) + 'px',
+            'border-radius': this.settings.borderRadius + 'px',
             display: '-webkit-box',
           }),
           _defineProperty(_style, 'display', '-ms-flexbox'),
@@ -210,42 +253,42 @@ var PageTop = /*#__PURE__*/ (function () {
           _defineProperty(_style, '-ms-flex-align', 'center'),
           _defineProperty(_style, 'align-items', 'center'),
           _defineProperty(_style, '-webkit-transition', '.3s linear'),
-          _defineProperty(_style, 'transition', this.transition),
+          _defineProperty(_style, 'transition', this.settings.transition),
           _defineProperty(_style, 'opacity', '0'),
-          _defineProperty(_style, 'background-color', this.baseColor),
+          _defineProperty(_style, 'background-color', this.settings.baseColor),
           _defineProperty(
             _style,
             '-webkit-box-shadow',
             ''
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', ')
-              .concat(this.borderThickness, 'px -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', -')
-              .concat(this.borderThickness, 'px -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor)
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', ')
+              .concat(this.settings.borderThickness, 'px -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', -')
+              .concat(this.settings.borderThickness, 'px -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor)
           ),
           _defineProperty(
             _style,
             'box-shadow',
             ''
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', ')
-              .concat(this.borderThickness, 'px -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor, ', -')
-              .concat(this.borderThickness, 'px -')
-              .concat(this.borderThickness, 'px ')
-              .concat(this.borderColor)
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', ')
+              .concat(this.settings.borderThickness, 'px -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor, ', -')
+              .concat(this.settings.borderThickness, 'px -')
+              .concat(this.settings.borderThickness, 'px ')
+              .concat(this.settings.borderColor)
           ),
           _defineProperty(_style, 'line-height', 1.15),
           _style),
@@ -259,7 +302,7 @@ var PageTop = /*#__PURE__*/ (function () {
         parents: '#pageTop',
         style:
           ((_style2 = {
-            color: this.textColor,
+            color: this.settings.textColor,
             'text-decoration': 'none',
             display: '-webkit-box',
           }),
@@ -271,7 +314,7 @@ var PageTop = /*#__PURE__*/ (function () {
           _defineProperty(_style2, '-webkit-box-align', 'center'),
           _defineProperty(_style2, '-ms-flex-align', 'center'),
           _defineProperty(_style2, 'align-items', 'center'),
-          _defineProperty(_style2, 'fontSize', this.fontSize + 'px'),
+          _defineProperty(_style2, 'fontSize', this.settings.fontSize + 'px'),
           _defineProperty(_style2, 'position', 'absolute'),
           _defineProperty(_style2, 'top', '0'),
           _defineProperty(_style2, 'left', '0'),
@@ -291,7 +334,7 @@ var PageTop = /*#__PURE__*/ (function () {
             'padding-top': '0px',
           },
           'padding-top',
-          ''.concat(this.triangleBaseSize * 0.4, 'px')
+          ''.concat(this.settings.triangleBaseSize * 0.4, 'px')
         ),
       },
       {
@@ -305,11 +348,11 @@ var PageTop = /*#__PURE__*/ (function () {
           height: 0,
           'border-style': 'solid',
           'border-width': '0 '
-            .concat(this.triangleBaseSize * 2, 'px ')
-            .concat(this.triangleBaseSize * 3, 'px ')
-            .concat(this.triangleBaseSize * 2, 'px'),
+            .concat(this.settings.triangleBaseSize * 2, 'px ')
+            .concat(this.settings.triangleBaseSize * 3, 'px ')
+            .concat(this.settings.triangleBaseSize * 2, 'px'),
           'border-color': 'transparent transparent '.concat(
-            this.textColor,
+            this.settings.textColor,
             ' transparent'
           ),
           margin: '0px auto',
@@ -322,9 +365,9 @@ var PageTop = /*#__PURE__*/ (function () {
         parents: '#pageTop_inner',
         style: {
           'font-family': 'Meiryo',
-          'font-weight': this.fontWeight,
+          'font-weight': this.settings.fontWeight,
           margin: 0,
-          padding: ''.concat(this.fontSize * 0.4, 'px 0 0'),
+          padding: ''.concat(this.settings.fontSize * 0.4, 'px 0 0'),
         },
       },
     ];
@@ -344,7 +387,8 @@ var PageTop = /*#__PURE__*/ (function () {
           function (entry) {
             var isIntersecting = entry[0].isIntersecting;
             topBtn.style.transform = 'translateX('.concat(
-              -(this.size + this.marginRight) * +isIntersecting,
+              -(this.settings.size + this.settings.marginRight) *
+                +isIntersecting,
               'px)'
             );
             topBtn.style.opacity = ''.concat(+isIntersecting);

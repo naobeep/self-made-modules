@@ -4,14 +4,14 @@ import { smoothScroll } from './smoothScroll_module';
 
 const settings = {
   // baseColor: '#14641e', //  string
-  // borderColor: '#FFF', //  string
+  // borderColor: '#fff', //  string
   // borderRadius: 10, //  number
   // borderThickness: 1,  //  number
   // fontWeight: '500', //  string
   // marginRight: 20, //  number
   // marginBottom: 20,  //  number
   // size: 50,  //  number
-  // textColor: '#000', //  string
+  // textColor: '#fff', //  string
   // transition: '.3s linear',  //  string
 };
 new PageTop(settings);
