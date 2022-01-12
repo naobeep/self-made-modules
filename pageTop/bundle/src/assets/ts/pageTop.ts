@@ -69,6 +69,8 @@ export class PageTop {
           class: 'page_top',
         },
         style: {
+          margin: '0',
+          padding: '0',
           width: `${this.settings.size}px`,
           height: `${this.settings.size}px`,
           position: 'fixed',
@@ -123,9 +125,9 @@ export class PageTop {
         },
         parents: '#pageTop_anchor',
         style: {
-          'text-align': 'center',
+          // 'text-align': 'center',
           'padding-top': `${this.settings.triangleBaseSize * 0.4}px`,
-          // height: '76.5%',
+          height: '76.5%',
         },
       },
       {

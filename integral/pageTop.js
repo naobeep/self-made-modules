@@ -143,22 +143,6 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 
-// usage
-//
-// import { PageTop } from './pageTop.js';
-// const settings = {
-//   baseColor: '#14641e', //  string
-//   borderColor: '#fff', //  string
-//   borderRadius: 10, //  number
-//   borderThickness: 1, //  number
-//   fontWeight: '500', //  string
-//   marginRight: 20, //  number
-//   marginBottom: 20, //  number
-//   size: 50, //  number
-//   textColor: '#fff', //  string
-//   transition: '.3s linear', //  string
-// };
-// new PageTop(settings);
 var body = document.querySelector('body');
 
 var elementGenerator = function elementGenerator(elementSource) {
@@ -195,7 +179,22 @@ var elementGenerator = function elementGenerator(elementSource) {
   } finally {
     _iterator.f();
   }
-};
+}; // usage
+//
+// import { PageTop } from './pageTop.js';
+// const settings = {
+//   baseColor: '#14641e', //  string
+//   borderColor: '#fff', //  string
+//   borderRadius: 10, //  number
+//   borderThickness: 1, //  number
+//   fontWeight: '500', //  string
+//   marginRight: 20, //  number
+//   marginBottom: 20, //  number
+//   size: 50, //  number
+//   textColor: '#fff', //  string
+//   transition: '.3s linear', //  string
+// };
+// new PageTop(settings);
 
 var PageTop = /*#__PURE__*/ (function () {
   'use strict';
@@ -236,6 +235,8 @@ var PageTop = /*#__PURE__*/ (function () {
         },
         style:
           ((_style = {
+            margin: 0,
+            padding: 0,
             width: this.settings.size + 'px',
             height: this.settings.size + 'px',
             position: 'fixed',
@@ -325,8 +326,8 @@ var PageTop = /*#__PURE__*/ (function () {
         },
         parents: '#pageTop_anchor',
         style: {
-          'text-align': 'center',
           'padding-top': ''.concat(this.settings.triangleBaseSize * 0.4, 'px'),
+          height: '76.5%',
         },
       },
       {
