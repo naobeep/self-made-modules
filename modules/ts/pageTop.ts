@@ -112,10 +112,6 @@ export class PageTop {
           '-webkit-box-align': 'center',
           '-ms-flex-align': 'center',
           'align-items': 'center',
-          fontSize: `${this.settings.fontSize}px`,
-          position: 'absolute',
-          top: '0',
-          left: '0',
           width: '100%',
           height: '100%',
         },
@@ -135,7 +131,7 @@ export class PageTop {
       {
         tagName: 'div',
         attr: {
-          class: 'triangle',
+          id: 'pageTop_triangle',
         },
         parents: '#pageTop_inner',
         style: {
@@ -151,11 +147,14 @@ export class PageTop {
       },
       {
         tagName: 'p',
-        attr: {},
+        attr: {
+          id: 'pageTop_text',
+        },
         textContent: 'TOP',
         parents: '#pageTop_inner',
         style: {
           'font-family': 'Meiryo',
+          fontSize: `${this.settings.fontSize}px`,
           'font-weight': this.settings.fontWeight!,
           margin: '0',
           padding: `${this.settings.fontSize * 0.4}px 0 0`,
@@ -172,11 +171,11 @@ export class PageTop {
 
     const observer = new IntersectionObserver(
       function (entry) {
-        const isIntersecting = entry[0].isIntersecting;
+        const isAppear = entry[0].boundingClientRect.top < 0;
         topBtn!.style.transform = `translateX(${
-          -(size! + marginRight!) * +isIntersecting
+          -(size! + marginRight!) * +isAppear
         }px)`;
-        topBtn!.style.opacity = `${+isIntersecting}`;
+        topBtn!.style.opacity = `${+isAppear}`;
       },
       { rootMargin: '0px 0px -100%' }
     );

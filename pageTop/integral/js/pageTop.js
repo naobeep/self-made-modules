@@ -195,7 +195,7 @@ var elementGenerator = function elementGenerator(elementSource) {
   } finally {
     _iterator.f();
   }
-}; // PageTop
+};
 
 var PageTop = /*#__PURE__*/ (function () {
   'use strict';
@@ -314,10 +314,6 @@ var PageTop = /*#__PURE__*/ (function () {
           _defineProperty(_style2, '-webkit-box-align', 'center'),
           _defineProperty(_style2, '-ms-flex-align', 'center'),
           _defineProperty(_style2, 'align-items', 'center'),
-          _defineProperty(_style2, 'fontSize', this.settings.fontSize + 'px'),
-          _defineProperty(_style2, 'position', 'absolute'),
-          _defineProperty(_style2, 'top', '0'),
-          _defineProperty(_style2, 'left', '0'),
           _defineProperty(_style2, 'width', '100%'),
           _defineProperty(_style2, 'height', '100%'),
           _style2),
@@ -328,19 +324,15 @@ var PageTop = /*#__PURE__*/ (function () {
           id: 'pageTop_inner',
         },
         parents: '#pageTop_anchor',
-        style: _defineProperty(
-          {
-            'text-align': 'center',
-            'padding-top': '0px',
-          },
-          'padding-top',
-          ''.concat(this.settings.triangleBaseSize * 0.4, 'px')
-        ),
+        style: {
+          'text-align': 'center',
+          'padding-top': ''.concat(this.settings.triangleBaseSize * 0.4, 'px'),
+        },
       },
       {
         tagName: 'div',
         attr: {
-          class: 'triangle',
+          id: 'pageTop_triangle',
         },
         parents: '#pageTop_inner',
         style: {
@@ -360,7 +352,9 @@ var PageTop = /*#__PURE__*/ (function () {
       },
       {
         tagName: 'p',
-        attr: {},
+        attr: {
+          id: 'pageTop_text',
+        },
         textContent: 'TOP',
         parents: '#pageTop_inner',
         style: {
@@ -368,6 +362,7 @@ var PageTop = /*#__PURE__*/ (function () {
           'font-weight': this.settings.fontWeight,
           margin: 0,
           padding: ''.concat(this.settings.fontSize * 0.4, 'px 0 0'),
+          fontSize: this.settings.fontSize + 'px',
         },
       },
     ];
@@ -385,13 +380,12 @@ var PageTop = /*#__PURE__*/ (function () {
         var topBtn = document.getElementById('pageTop');
         var observer = new IntersectionObserver(
           function (entry) {
-            var isIntersecting = entry[0].isIntersecting;
+            var isAppear = entry[0].boundingClientRect.top < 0;
             topBtn.style.transform = 'translateX('.concat(
-              -(this.settings.size + this.settings.marginRight) *
-                +isIntersecting,
+              -(this.settings.size + this.settings.marginRight) * +isAppear,
               'px)'
             );
-            topBtn.style.opacity = ''.concat(+isIntersecting);
+            topBtn.style.opacity = ''.concat(+isAppear);
           }.bind(this),
           {
             rootMargin: '0px 0px -100%',
