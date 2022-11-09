@@ -10,7 +10,7 @@ var cb = function cb(entries, observer) {
   entries.forEach(function (entry) {
     if (entry.isIntersecting) {
       // console.log(this.options);
-      entry.target.classList.add('targetIsIntersecting');
+      entry.target.classList.add('in-view');
       observer.unobserve(entry.target);
     }
   });

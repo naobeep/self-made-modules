@@ -25,7 +25,7 @@ export class IOConstructor {
       rootMargin: '0px',
       threshold: 0,
       once: true,
-      className: 'targetIsIntersecting',
+      className: 'in-view',
     };
     this.options = Object.assign(defaultOptions, options);
     const defaultCallback = (

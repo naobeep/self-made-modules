@@ -1,5 +1,5 @@
 /**
- * targetに指定した要素が画面に入った際に.targetIsIntersectingのクラスを付与します。callback,optionsは省略可能です。
+ * targetに指定した要素が画面に入った際に.in-viewのクラスを付与します。callback,optionsは省略可能です。
  * @module IOConstructor
  * @constructor
  * @param {string} target
@@ -15,7 +15,7 @@ export class IOConstructor {
       rootMargin: '0px',
       threshold: 0,
       once: true,
-      className: 'targetIsIntersecting',
+      className: 'in-view',
     };
     const defaultCallback = (entries, observer) => {
       entries.forEach(entry => {
